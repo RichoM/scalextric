@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://track/fence.png" type="Texture" id=1]
+
+[sub_resource type="Curve3D" id=1]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 20.3697, 0, 6.80146, -1.46623, 0, 7.91087, 1.46623, 0, -7.91087, 21.3995, 0, -30.6133, -11.3274, 0, 6.17858, 11.3274, 0, -6.17858, 41.215, 0, -56.3413, -26.0873, 0, -7.20834, 26.0873, 0, 7.20834, 119.82, 0, -55.9981, -1.37302, 0, -12.0139, 1.37302, 0, 12.0139, 142.132, 0, -9.31547, 0, 0, 0, 0, 0, 0, 139.729, 0, 59.6787, 13.3869, 0, -6.86507, -13.3869, 0, 6.86507, 123.596, 0, 70.6628, 5.49208, 0, 2.05952, -5.49208, 0, -2.05952, 53.2289, 0, 75.1251, 0, 0, 0, 0, 0, 0, 38.8122, 0, 67.2302, 2.40279, 0, 8.92462, -2.40279, 0, -8.92462, 23.0225, 0, 43.5457, 0, 0, 0, 0, 0, 0, 20.3697, 0, 6.80146 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_vertex_lighting = true
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.56
+albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 0.1, 0.2, 0.1 )
+uv1_triplanar = true
+
+[node name="fence" type="Spatial"]
+
+[node name="path" type="Path" parent="."]
+curve = SubResource( 1 )
+
+[node name="polygon" type="CSGPolygon" parent="."]
+polygon = PoolVector2Array( 0, 0, 0, 5, 0.01, 5, 0.01, 0 )
+mode = 2
+path_node = NodePath("../path")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 2.5
+path_rotation = 0
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource( 2 )

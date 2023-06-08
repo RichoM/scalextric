@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://track/road_material.tres" type="Material" id=1]
+[ext_resource path="res://track/track.gd" type="Script" id=2]
+
+[sub_resource type="Curve3D" id=1]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.0700083, 0, -0.0962041, -0.856194, 0, 13.9936, 0.856194, 0, -13.9936, 0, 0, -61, -34.9445, 0, 0.493286, 34.9445, 0, -0.493286, 31.8138, 0, -101.112, -18.6982, 0, -2.43105, 18.6982, 0, 2.43105, 112.72, 0, -99.1629, -0.50235, 0, -21.9266, 0.50235, 0, 21.9266, 138.714, 0, -56.5976, -37.0416, 0, -59.7864, 37.0416, 0, 59.7864, 134.433, 0, 65.8848, 16.8962, 0, 2.27448, -16.8962, 0, -2.27448, 31.5094, 0, 91.0575, 1.29971, 0, 22.4199, -1.29971, 0, -22.4199, -0.658287, 0, 65.3884, 0, 0, 0, 0, 0, 0, -0.0269575, 0, 2.50898, 0, 0, 0, 0, 0, 0, -0.0700083, 0, -0.0962041 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[node name="track" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="path" type="Path" parent="."]
+curve = SubResource( 1 )
+
+[node name="road" type="CSGPolygon" parent="path"]
+polygon = PoolVector2Array( -10, 0, -10, 0.12, 10, 0.12, 10, 0 )
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 5.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 20.0
+path_joined = false
+material = ExtResource( 1 )
+
+[connection signal="curve_changed" from="path" to="." method="_on_path_curve_changed"]

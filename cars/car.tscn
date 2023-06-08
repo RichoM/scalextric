@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://cars/car.gd" type="Script" id=1]
+[ext_resource path="res://cars/kenney_carkit_v1.4/Models/race.glb" type="PackedScene" id=2]
+
+[sub_resource type="PrismMesh" id=1]
+size = Vector3( 2, 2, 4 )
+
+[node name="car" type="Spatial"]
+transform = Transform( 0.999892, 0, 0, 0, 1, 0, 0, 0, 0.999892, 0, 0, 0 )
+script = ExtResource( 1 )
+track_path = NodePath("../track")
+speed = 50.0
+offset = 5.0
+
+[node name="mesh" type="CSGMesh" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+visible = false
+mesh = SubResource( 1 )
+
+[node name="race" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
